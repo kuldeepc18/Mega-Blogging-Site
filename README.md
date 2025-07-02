@@ -1,1 +1,1 @@
-A blogging platform. 
+A Blogging Platform.
