@@ -1,5 +1,6 @@
 import conf from '../conf/conf.js';
 import { Client, ID, Databases, Storage, Query } from "appwrite";
+import { Permission, Role } from 'appwrite';
 
 export class Service {
     client = new Client();
@@ -103,7 +104,10 @@ export class Service {
             return await this.bucket.createFile(
                 conf.appwriteBucketId,
                 ID.unique(),
-                file
+                file,
+                [
+                    Permission.read(Role.any())
+                ]
             )
         } catch (error) {
             console.log("Appwrite serive :: uploadFile :: error", error);
@@ -124,8 +128,17 @@ export class Service {
         }
     }
 
+    // not working on free appwrite version
+    // getFilePreview(fileId) {
+    //     return this.bucket.getFilePreview(
+    //         conf.appwriteBucketId,
+    //         fileId
+    //     )
+    // }
+
+
     getFilePreview(fileId) {
-        return this.bucket.getFilePreview(
+        return this.bucket.getFileView(
             conf.appwriteBucketId,
             fileId
         )
