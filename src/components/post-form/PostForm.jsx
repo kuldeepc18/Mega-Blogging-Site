@@ -54,8 +54,10 @@ export default function PostForm({ post }) {
             return value
                 .trim()
                 .toLowerCase()
-                .replace(/[^a-zA-Z\d\s]+/g, "-")
-                .replace(/\s/g, "-");
+                .replace(/[^a-z0-9._-]+/g, "-") // only valid chars
+                .replace(/^-+/, "") // remove leading hyphens
+                .replace(/-+$/, "") // remove trailing hyphens
+                .slice(0, 36); // limit to 36 chars
 
         return "";
     }, []);
