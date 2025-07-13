@@ -27,30 +27,26 @@ function Login() {
     }
 
     return (
-        <div
-            className='flex items-center justify-center w-full'
-        >
-            <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
-                <div className="mb-2 flex justify-center">
-                    <span className="inline-block w-full max-w-[100px]">
-                        <Logo width="100%" />
-                    </span>
-                </div>
-                <h2 className="text-center text-2xl font-bold leading-tight">Sign in to your account</h2>
-                <p className="mt-2 text-center text-base text-black/60">
-                    Don&apos;t have any account?&nbsp;
-                    <Link
-                        to="/signup"
-                        className="font-medium text-primary transition-all duration-200 hover:underline"
-                    >
-                        Sign Up
-                    </Link>
-                </p>
-                {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
-                <form onSubmit={handleSubmit(login)} className='mt-8'>
-                    <div className='space-y-5'>
+        <div className='flex items-center justify-center w-full min-h-[80vh] py-12'>
+            <div className='mx-auto w-full max-w-md'>
+                <div className='bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700'>
+                    <div className="mb-6 flex justify-center">
+                        <span className="inline-block w-full max-w-[80px]">
+                            <Logo width="100%" />
+                        </span>
+                    </div>
+                    <h2 className="text-center text-2xl font-bold text-gray-800 dark:text-gray-200 mb-2">Welcome back</h2>
+                    <p className="text-center text-gray-600 dark:text-gray-400 mb-8">
+                        Sign in to your account to continue
+                    </p>
+                    {error && (
+                        <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+                            <p className="text-red-600 dark:text-red-400 text-sm text-center">{error}</p>
+                        </div>
+                    )}
+                    <form onSubmit={handleSubmit(login)} className='space-y-6'>
                         <Input
-                            label="Email: "
+                            label="Email"
                             placeholder="Enter your email"
                             type="email"
                             {...register("email", {
@@ -62,7 +58,7 @@ function Login() {
                             })}
                         />
                         <Input
-                            label="Password: "
+                            label="Password"
                             type="password"
                             placeholder="Enter your password"
                             {...register("password", {
@@ -71,10 +67,23 @@ function Login() {
                         />
                         <Button
                             type="submit"
-                            className="w-full"
-                        >Sign in</Button>
+                            className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
+                        >
+                            Sign in
+                        </Button>
+                    </form>
+                    <div className="mt-6 text-center">
+                        <p className="text-gray-600 dark:text-gray-400">
+                            Don't have an account?{' '}
+                            <Link
+                                to="/signup"
+                                className="font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+                            >
+                                Sign up
+                            </Link>
+                        </p>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     )
